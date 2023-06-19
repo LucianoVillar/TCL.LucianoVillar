@@ -8,6 +8,7 @@ SELECT @@autocommit;
 #Inserto valor que despues vamos a eliminar
 INSERT INTO usuario (id_usuario, nombre, documento, birthdate, id_pais, direccion, mail, telefono) VALUES (4,'Cristina',28689544,'1969-08-15',1,'Zapican 435','crislescanocaceres@hotmail.com',098983468);
 
+#Transaccion para eliminar un usuario
 START TRANSACTION;
 delete from usuario
 where 
@@ -16,7 +17,7 @@ SELECT * FROM usuario;
 #rollback;
 #commit;
 
-
+#Transaccion donde agregamos valores, y separamos por Savepoint, para posteriormente eliminar el segundo savepoint 
 select * from pais;
 start transaction;
 INSERT INTO pais (id_pais, nombre) 
@@ -33,4 +34,3 @@ values	(21,'Dinamarca'),
 savepoint Europa;
 #release savepoint America;
 #commit
-
